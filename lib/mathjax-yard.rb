@@ -26,13 +26,15 @@ module MathJaxYard
           puts opt.ver
           exit
         }
-        opt.on('-r', '--revert','revert back up file to orig file.') {
+        opt.on('-r', '--revert','revert mjx file to orig file.') {
           directory = @argv[0]==nil ? 'lib/../*/*.md.back' : @argv[0]
           revert(directory)
           exit
         }
         opt.on('-p', '--post','post operation.') {
           post_operation
+          directory = @argv[0]==nil ? 'lib/../*/*.md.back' : @argv[0]
+          revert(directory)
           exit
         }
       end
@@ -48,7 +50,7 @@ module MathJaxYard
       src = file.read
       p data = YAML.load(src)
       data.each_pair{|file, tags|
-        File.basename(file).scan(/(.+)\.md.mjx/)
+        File.basename(file).scan(/(.+)\.md/)
         p basename = $1
         target = "./doc/file.#{basename}.html"
         file = File.open(target,'r')
@@ -82,15 +84,17 @@ module MathJaxYard
         if @eq_data[file].size ==0
           @eq_data.delete(file) 
         else
-#          write_output_on_target(file,output)
-          write_output_on_backup(file,output,'.mjx')
+          write_output_on_target(file,output)
+#          write_output_on_backup(file,output,'.mjx')
         end
       }
       save_yaml(@eq_data,"mathjax.yml")
     end
 
     def write_output_on_backup(file,output,extention='.mjx')
-      b_file = File.open(file+extention,'w')
+      file.scan(/(.+)\.md/)
+      p basename = $1
+      b_file = File.open(basename+extention+'.md','w')
       b_file.print output
       b_file.close
     end
