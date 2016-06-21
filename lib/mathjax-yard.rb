@@ -48,7 +48,7 @@ module MathJaxYard
       src = file.read
       p data = YAML.load(src)
       data.each_pair{|file, tags|
-        File.basename(file).scan(/(.+)\.md/)
+        File.basename(file).scan(/(.+)\.md.mjx/)
         p basename = $1
         target = "./doc/file.#{basename}.html"
         file = File.open(target,'r')
@@ -82,15 +82,15 @@ module MathJaxYard
         if @eq_data[file].size ==0
           @eq_data.delete(file) 
         else
-          write_output_on_target(file,output)
-#          write_output_on_backup(file,output)
+#          write_output_on_target(file,output)
+          write_output_on_backup(file,output,'.mjx')
         end
       }
       save_yaml(@eq_data,"mathjax.yml")
     end
 
-    def write_output_on_backup(file,output)
-      b_file = File.open(file+'.back','w')
+    def write_output_on_backup(file,output,extention='.mjx')
+      b_file = File.open(file+extention,'w')
       b_file.print output
       b_file.close
     end

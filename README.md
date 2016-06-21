@@ -1,8 +1,6 @@
-# Mathjax::Yard
+# MathJaxYard
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mathjax/yard`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+mathjax-yard is a mathjax extention for markdown in yard.
 
 ## Installation
 
@@ -22,7 +20,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+mathjax-yard is intended to be a command line tool, using in Rakefile as follows.
+
+'''
+
+desc "make documents by yard"
+task :yard do
+  system('mathjax-yard')
+  YARD::Rake::YardocTask.new
+end
+
+desc "make documents with yardmath"
+task :mathjax do
+  system('mathjax-yard --post')
+end
+'''
+mathjax-yard search ./*/*.md and replace '$...$' or '$$...$$' to $MATHJAX**$ tags, and make 'mathjax.yml' for storing these relations.  After the normal YARD operation has done, 'mathjax-yard --post' replacement will be done on 'doc/file.*.hmtl'.  The yard options are
+
+'''
+-t mathjax -p templates
+-
+spec/*.md
+'''
+
+The mathjax layout should be included in yard layour.
+
 
 ## Development
 
