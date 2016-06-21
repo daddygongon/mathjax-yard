@@ -1,6 +1,6 @@
 # MathJaxYard
 
-mathjax-yard is a mathjax extension for markdown in yard.
+mathjax-yardはyardによるmarkdown変換においてmathjaxを使えるようにする拡張機能です．
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-mathjax-yard is intended to be a command line tool, using in Rakefile as follows.
+mathjax-yardはcommand line toolとしての使用を意図して作られています．例えば，Rakefileでの使用例は次の通りです．
 
 ```
 desc "make documents by yard"
@@ -34,7 +34,16 @@ task :mathjax do
   system('mathjax-yard --post')
 end
 ```
-mathjax-yard search ./*/*.md and replace '$...$' or '$$...$$' to $MATHJAX**$ tags, and make 'mathjax.yml' for storing these relations.  After the normal YARD operation has done, 'mathjax-yard --post' replacement will be done on 'doc/file.*.html'.  The yard options are
+
+yardのデフォルトでの動作をなぞって，動作するように作られています．
+* mathjax-yardは./*/*.mdを探索し，それらの中に'$...$'あるいは'$$...$$'があると$MATHJAX**$というタグに付け替え，
+* *.md.backとしたファイルに元ファイルのバックアップを取り，*.mdにタグ付け替えした内容を保存します．
+*また，同時に，  'mathjax.yml'にそれらのhash関係をyaml形式で保存します．
+* 通常のrake yardで変換したのち，
+* 'mathjax-yard --post'によって，'doc/file.*.html'に残されたtagを元に戻します．
+* また同時に，backファイルを元に戻します．
+
+yardのoptionは，.yardoptsに
 
 ```
 -t mathjax -p templates
@@ -42,8 +51,15 @@ mathjax-yard search ./*/*.md and replace '$...$' or '$$...$$' to $MATHJAX**$ tag
 spec/*.md
 ```
 
-The mathjax layout should be included in yard layout.
+としています．また，htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意しています．
 
+```csh
+bob% bundle exec exe/mathjax-yard --help
+Usage: yardmath [options] [DIRECTORY]
+    -v, --version                    show program Version.
+    -r, --revert                     revert mjx file to orig file.
+    -p, --post                       post operation.
+```
 
 ## Development
 
