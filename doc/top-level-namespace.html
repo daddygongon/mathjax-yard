@@ -4,14 +4,14 @@
   <head>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
-      tex2jax:{
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-      }
-      });
+                           tex2jax:{
+      inlineMath: [ ['$','$'], ["\(","\)"] ],
+      displayMath: [ ['$$','$$'], ["\[","\]"] ]
+                           }
+                         });
     </script>
     <script type="text/javascript"
-	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     </script>
     <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -104,6 +104,40 @@
   
 </p>
 
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="MATH_SCRIPT-constant" class="">MATH_SCRIPT =
+          
+        </dt>
+        <dd><pre class="code"><span class='heredoc_beg'>&lt;&lt;EOS</span>
+<span class='tstring_content'>    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+      MathJax.Hub.Config({
+                           tex2jax:{
+      inlineMath: [ [&#39;$&#39;,&#39;$&#39;], [&quot;\\(&quot;,&quot;\\)&quot;] ],
+      displayMath: [ [&#39;$$&#39;,&#39;$$&#39;], [&quot;\\[&quot;,&quot;\\]&quot;] ]
+                           }
+                         });
+    &lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;
+            src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AM\
+S_HTML&quot;&gt;
+    &lt;/script&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; CONTENT=&quot;IE=EmulateIE7&quot; /&gt;
+</span><span class='heredoc_end'>EOS</span></pre></dd>
+      
+        <dt id="ORIGINAL-constant" class="">ORIGINAL =
+          
+        </dt>
+        <dd><pre class="code"><span class='heredoc_beg'>&lt;&lt;EOS</span>
+<span class='tstring_content'>    &lt;%= erb(:headers) %&gt;
+  &lt;/head&gt;
+</span><span class='heredoc_end'>EOS</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -115,7 +149,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Jun 21 12:07:02 2016 by
+  Generated on Wed Jun 22 16:38:30 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>

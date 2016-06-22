@@ -1,5 +1,5 @@
 -t mathjax -p templates
 -
-spec/*.mjx.md
+spec/*.md
 
 

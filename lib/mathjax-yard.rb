@@ -67,10 +67,10 @@ module MathJaxYard
     end
 
     def modify_layout(file_name)
+      p file_name
       file0=File.open(file_name,'r')
       src=file0.read
       src.gsub!(ORIGINAL,MATH_SCRIPT+ORIGINAL)
-      print src
       file0.close
       file0=File.open(file_name,'w')
       file0.print src
