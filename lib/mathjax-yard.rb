@@ -1,8 +1,9 @@
 require "mathjax-yard/version"
+require "mathjax-yard/script"
 require 'optparse'
 require 'yaml'
 require 'fileutils'
-
+require 'systemu'
 
 module MathJaxYard
     # Your code goes here...
@@ -37,12 +38,43 @@ module MathJaxYard
           revert(directory)
           exit
         }
+        opt.on('-i', '--init','initiation for mathjax extension on yard layout.') {
+          target_dir=get_yard_layout_dir()
+          FileUtils.cd(target_dir){
+            tmp_dir='mathjax' # 'math2'
+            FileUtils.cp_r('default',tmp_dir)
+            modify_layout("#{tmp_dir}/layout/html/layout.erb")
+            modify_layout("#{tmp_dir}/onefile/html/layout.erb")
+            exit
+          }
+          exit
+        }
       end
       command_parser.banner = "Usage: yardmath [options] [DIRECTORY]"
       command_parser.parse!(@argv)
       directory = @argv[0]==nil ? 'lib/../*/*.md' : @argv[0]
       convert(directory)
       exit
+    end
+
+    def get_yard_layout_dir()
+      status, stdout, stderr  = systemu('gem env | grep INSTALLATION ')
+      p inst_dir= stdout.split("\n")[0].split(': ')[1]
+      status, stdout, stderr  = systemu('yard -v')
+      p yard_num= stdout.split(' ')[0]+'-'+stdout.split(' ')[1]
+      p target_dir = File.join(inst_dir,'gems',yard_num,"templates")
+      return target_dir
+    end
+
+    def modify_layout(file_name)
+      file0=File.open(file_name,'r')
+      src=file0.read
+      src.gsub!(ORIGINAL,MATH_SCRIPT+ORIGINAL)
+      print src
+      file0.close
+      file0=File.open(file_name,'w')
+      file0.print src
+      file0.close
     end
 
     def post_operation
