@@ -160,6 +160,7 @@ module MathJaxYard
             p stored_eq << line
           end
         else #outside eq block
+          next if line =~ /\\\$(.+)\\\$/ #escape \$
           if line =~ /\$(.+)\$/ #normal op. in line eq.
             p converted =check_multiple_match($1,file_name)
             output <<  $`+converted+$'
