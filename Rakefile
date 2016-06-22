@@ -10,6 +10,7 @@ desc "make documents by yard"
 task :yard do
   system('mathjax-yard')
   YARD::Rake::YardocTask.new
+
 end
 
 desc "make documents with yardmath"
