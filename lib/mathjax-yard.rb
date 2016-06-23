@@ -209,9 +209,24 @@ module MathJaxYard
     end
 
     def check_escape_match(line,file)
-      p line
-      p line.gsub!("\\\$","\\\$")
-      text = store_eq_data("\$#{line}\$",file)
+      if !line.include?('$') then
+        return store_eq_data("\$#{line}\$",file)
+      end
+      inline_eq = true
+      equation,text="",""
+      line.each_char{|char|
+        if char == '$'
+          if inline_eq then #closing
+            text << store_eq_data("\$#{equation}\$",file)
+            equation = ""
+          else
+          end
+          inline_eq = !inline_eq
+        else
+          inline_eq ? equation << char : text << char
+        end
+      }
+      text << store_eq_data("\$#{equation}\$",file)
       return text
     end
   end

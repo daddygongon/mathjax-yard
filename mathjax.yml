@@ -27,4 +27,4 @@ lib/../mathjax-yard.wiki/potential2.md:
     \frac{ d_0 \left( r_1^{-n}m-  r_1^{-m} n \right) }{ -n + m }
     $$
 lib/../mathjax-yard.wiki/README_ja.md:
-  "$MATHJAX17$": "$$'あるいは'$$..$$"
+  "$MATHJAX17$": "$\\$'あるいは'\\$\\$..\\$$"
