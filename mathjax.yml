@@ -23,6 +23,8 @@ lib/../mathjax-yard.wiki/atom.md:
 lib/../mathjax-yard.wiki/potential2.md:
   "$MATHJAX15$": "$$ F(s)=\\int_{0}^{\\infty}f(t)e^{-st}dt $"
   "$MATHJAX16$": |-
-    $$r_1=r/r_0 \\
+    $$
+    r_1=r/r_0
+
     \frac{ d_0 \left( r_1^{-n}m-  r_1^{-m} n \right) }{ -n + m }
     $$

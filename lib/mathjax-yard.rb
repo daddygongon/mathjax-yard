@@ -75,7 +75,7 @@ module MathJaxYard
     end
 
     def post_operation
-      src = File.read("./mathjax.yml",'r')
+      src = File.read("./mathjax.yml")
       p data = YAML.load(src)
       data.each_pair{|file, tags|
         File.basename(file).scan(/(.+)\.md/)
