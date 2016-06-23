@@ -237,6 +237,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#init_yard-instance_method" title="#init_yard (instance method)">- (Object) <strong>init_yard</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#initialize-instance_method" title="#initialize (instance method)">- (Command) <strong>initialize</strong>(argv = []) </a>
     
 
@@ -395,28 +417,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#write_output_on_backup-instance_method" title="#write_output_on_backup (instance method)">- (Object) <strong>write_output_on_backup</strong>(file, output, extention = &#39;.mjx&#39;) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#write_output_on_target-instance_method" title="#write_output_on_target (instance method)">- (Object) <strong>write_output_on_target</strong>(file, output) </a>
     
 
@@ -547,6 +547,7 @@
       <pre class="lines">
 
 
+109
 110
 111
 112
@@ -559,12 +560,10 @@
 119
 120
 121
-122
-123
-124</pre>
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_convert'>convert</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
@@ -576,8 +575,7 @@
       <span class='ivar'>@eq_data</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span> 
     <span class='kw'>else</span>
       <span class='id identifier rubyid_write_output_on_target'>write_output_on_target</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
-<span class='comment'>#          write_output_on_backup(file,output,&#39;.mjx&#39;)
-</span>    <span class='kw'>end</span>
+    <span class='kw'>end</span>
   <span class='rbrace'>}</span>
   <span class='id identifier rubyid_save_yaml'>save_yaml</span><span class='lparen'>(</span><span class='ivar'>@eq_data</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mathjax.yml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -630,14 +628,7 @@
 48
 49
 50
-51
-52
-53
-54
-55
-56
-57
-58</pre>
+51</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 22</span>
@@ -662,14 +653,7 @@
       <span class='id identifier rubyid_exit'>exit</span>
     <span class='rbrace'>}</span>
     <span class='id identifier rubyid_opt'>opt</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-i</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--init</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>initiation for mathjax extension on yard layout.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span>
-      <span class='id identifier rubyid_target_dir'>target_dir</span><span class='op'>=</span><span class='id identifier rubyid_get_yard_layout_dir'>get_yard_layout_dir</span><span class='lparen'>(</span><span class='rparen'>)</span>
-      <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cd'>cd</span><span class='lparen'>(</span><span class='id identifier rubyid_target_dir'>target_dir</span><span class='rparen'>)</span><span class='lbrace'>{</span>
-        <span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mathjax</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># &#39;math2&#39;
-</span>        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp_r'>cp_r</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_modify_layout'>modify_layout</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/layout/html/layout.erb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_modify_layout'>modify_layout</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/onefile/html/layout.erb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_exit'>exit</span>
-      <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_init_yard'>init_yard</span>
       <span class='id identifier rubyid_exit'>exit</span>
     <span class='rbrace'>}</span>
   <span class='kw'>end</span>
@@ -699,17 +683,17 @@
       <pre class="lines">
 
 
-60
-61
-62
 63
 64
 65
 66
-67</pre>
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_yard_layout_dir'>get_yard_layout_dir</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span>  <span class='op'>=</span> <span class='id identifier rubyid_systemu'>systemu</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gem env | grep INSTALLATION </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -718,6 +702,48 @@
   <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_yard_num'>yard_num</span><span class='op'>=</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_target_dir'>target_dir</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_inst_dir'>inst_dir</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gems</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_yard_num'>yard_num</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>templates</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_target_dir'>target_dir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="init_yard-instance_method">
+  
+    - (<tt>Object</tt>) <strong>init_yard</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_init_yard'>init_yard</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_target_dir'>target_dir</span><span class='op'>=</span><span class='id identifier rubyid_get_yard_layout_dir'>get_yard_layout_dir</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cd'>cd</span><span class='lparen'>(</span><span class='id identifier rubyid_target_dir'>target_dir</span><span class='rparen'>)</span><span class='lbrace'>{</span>
+    <span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mathjax</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># &#39;math2&#39;
+</span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp_r'>cp_r</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_modify_layout'>modify_layout</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/layout/html/layout.erb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_modify_layout'>modify_layout</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tmp_dir'>tmp_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/onefile/html/layout.erb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -739,6 +765,20 @@
       <pre class="lines">
 
 
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
 149
 150
 151
@@ -756,28 +796,10 @@
 163
 164
 165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184</pre>
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mk_tags'>mk_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='ivar'>@in_eq_block</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -793,20 +815,16 @@
 </span>        <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_stored_eq'>stored_eq</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
       <span class='kw'>end</span>
     <span class='kw'>else</span> <span class='comment'>#outside eq block
-</span>      <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\\\$(.*?)\\\$</span><span class='regexp_end'>/</span></span>
-        <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\\\$(.*?)\\\$</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_equation'>equation</span><span class='op'>|</span>
-          <span class='id identifier rubyid_eq'>eq</span> <span class='op'>=</span> <span class='backref'>$1</span>
-          <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;#36;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_eq'>eq</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;#36;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
-        <span class='rbrace'>}</span>
-        <span class='id identifier rubyid_output'>output</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
-      <span class='kw'>elsif</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\$(.+?)\$</span><span class='regexp_end'>/</span></span>
+</span>      <span class='kw'>case</span> <span class='id identifier rubyid_line'>line</span>
+      <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\\\$(.*?)\\\$</span><span class='regexp_end'>/</span></span>
+        <span class='id identifier rubyid_output'>output</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span> <span class='comment'># tryed to change $$ but failed.
+</span>      <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\$(.+?)\$</span><span class='regexp_end'>/</span></span>
         <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\$(.+?)\$</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_equation'>equation</span><span class='op'>|</span>
           <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='id identifier rubyid_equation'>equation</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
         <span class='rbrace'>}</span>
         <span class='id identifier rubyid_output'>output</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
-      <span class='kw'>elsif</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\$\$</span><span class='regexp_end'>/</span></span> <span class='comment'># opening in eq block
-</span>        <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_line'>line</span>
-        <span class='ivar'>@in_eq_block</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@in_eq_block</span>
+      <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\$\$</span><span class='regexp_end'>/</span></span> <span class='comment'># opening in eq block
+</span>        <span class='ivar'>@in_eq_block</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@in_eq_block</span>
         <span class='id identifier rubyid_stored_eq'>stored_eq</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>else</span>  <span class='comment'>#normal op (no eq)
 </span>        <span class='id identifier rubyid_output'>output</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
@@ -835,19 +853,19 @@
       <pre class="lines">
 
 
-69
-70
-71
 72
 73
 74
 75
 76
 77
-78</pre>
+78
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_modify_layout'>modify_layout</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_file_name'>file_name</span>
@@ -879,9 +897,6 @@
       <pre class="lines">
 
 
-80
-81
-82
 83
 84
 85
@@ -896,11 +911,10 @@
 94
 95
 96
-97
-98</pre>
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_post_operation'>post_operation</span>
   <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./mathjax.yml</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -910,15 +924,11 @@
     <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(.+)\.md</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_basename'>basename</span> <span class='op'>=</span> <span class='backref'>$1</span>
     <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./doc/file.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_basename'>basename</span><span class='embexpr_end'>}</span><span class='tstring_content'>.html</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_src'>src</span> <span class='op'>=</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
-    <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_src'>src</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_tags'>tags</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span><span class='id identifier rubyid_eq'>eq</span><span class='op'>|</span>
       <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span><span class='id identifier rubyid_eq'>eq</span><span class='rparen'>)</span>
     <span class='rbrace'>}</span>
-    <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span><span class='lparen'>(</span><span class='id identifier rubyid_src'>src</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='comma'>,</span><span class='id identifier rubyid_src'>src</span><span class='rparen'>)</span>
   <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -941,6 +951,7 @@
       <pre class="lines">
 
 
+99
 100
 101
 102
@@ -948,11 +959,10 @@
 104
 105
 106
-107
-108</pre>
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_revert'>revert</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
@@ -983,21 +993,17 @@
       <pre class="lines">
 
 
-142
-143
-144
-145
-146
-147</pre>
+130
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save_yaml'>save_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_print'>print</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='op'>=</span><span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_math_file'>math_file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_math_file'>math_file</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_math_file'>math_file</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1019,59 +1025,21 @@
       <pre class="lines">
 
 
-186
-187
-188
-189
-190
-191</pre>
+168
+169
+170
+171
+172
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='id identifier rubyid_equation'>equation</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='ivar'>@eq_number</span><span class='op'>+=</span><span class='int'>1</span>
   <span class='id identifier rubyid_tag'>tag</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$MATHJAX</span><span class='embexpr_beg'>#{</span><span class='ivar'>@eq_number</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='tstring_end'>&quot;</span></span>
   <span class='ivar'>@eq_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_tag'>tag</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_equation'>equation</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_tag'>tag</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="write_output_on_backup-instance_method">
-  
-    - (<tt>Object</tt>) <strong>write_output_on_backup</strong>(file, output, extention = &#39;.mjx&#39;) 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-126
-127
-128
-129
-130
-131
-132</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 126</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_write_output_on_backup'>write_output_on_backup</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_output'>output</span><span class='comma'>,</span><span class='id identifier rubyid_extention'>extention</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.mjx</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(.+)\.md</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_basename'>basename</span> <span class='op'>=</span> <span class='backref'>$1</span>
-  <span class='id identifier rubyid_b_file'>b_file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_basename'>basename</span><span class='op'>+</span><span class='id identifier rubyid_extention'>extention</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.md</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_b_file'>b_file</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span> <span class='id identifier rubyid_output'>output</span>
-  <span class='id identifier rubyid_b_file'>b_file</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1093,23 +1061,19 @@
       <pre class="lines">
 
 
-134
-135
-136
-137
-138
-139
-140</pre>
+124
+125
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_output_on_target'>write_output_on_target</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_b_file'>b_file</span> <span class='op'>=</span> <span class='id identifier rubyid_file'>file</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.back</span><span class='tstring_end'>&#39;</span></span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mv'>mv</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_b_file'>b_file</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_t_file'>t_file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_t_file'>t_file</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span> <span class='id identifier rubyid_output'>output</span>
-  <span class='id identifier rubyid_t_file'>t_file</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1121,7 +1085,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Jun 23 13:31:01 2016 by
+  Generated on Thu Jun 23 13:52:10 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>

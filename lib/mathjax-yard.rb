@@ -6,7 +6,6 @@ require 'fileutils'
 require 'systemu'
 
 module MathJaxYard
-    # Your code goes here...
   class Command
     def self.run(argv=[])
       new(argv).execute
@@ -20,7 +19,6 @@ module MathJaxYard
     end
 
     def execute
-      # @argv << '--help' if @argv.size==0
       command_parser = OptionParser.new do |opt|
         opt.on('-v', '--version','show program Version.') { |v|
           opt.version = Yardmath::VERSION
@@ -39,7 +37,7 @@ module MathJaxYard
           exit
         }
         opt.on('-i', '--init','initiation for mathjax extension on yard layout.') {
-          init_yard
+          init_yard()
           exit
         }
       end
@@ -71,18 +69,13 @@ module MathJaxYard
 
     def modify_layout(file_name)
       p file_name
-      file0=File.open(file_name,'r')
-      src=file0.read
+      src=Ffile.read(file_name)
       src.gsub!(ORIGINAL,MATH_SCRIPT+ORIGINAL)
-      file0.close
-      file0=File.open(file_name,'w')
-      file0.print src
-      file0.close
+      File.write(file_name,src)
     end
 
     def post_operation
-      file = File.open("./mathjax.yml",'r')
-      src = file.read
+      src = File.read("./mathjax.yml",'r')
       p data = YAML.load(src)
       data.each_pair{|file, tags|
         File.basename(file).scan(/(.+)\.md/)
@@ -118,18 +111,13 @@ module MathJaxYard
           write_output_on_target(file,output)
         end
       }
-      save_yaml(@eq_data,"mathjax.yml")
+      File.write("mathjax.yml",YAML.dump(@eq_data))
     end
 
     def write_output_on_target(file,output)
       b_file = file+'.back'
       FileUtils.mv(file,b_file)
       File.write(file,output)
-    end
-
-    def save_yaml(data,file)
-      print yaml_data=YAML.dump(data)
-      File.write(file, yaml_data)
     end
 
     def mk_tags(lines,file_name)
