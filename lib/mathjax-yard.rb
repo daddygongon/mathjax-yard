@@ -163,7 +163,7 @@ module MathJaxYard
           if line =~ /\\\$(.*?)\\\$/
             line.gsub!(/\\\$(.*?)\\\$/){|equation|
               eq = $1
-              store_eq_data("$#{eq}$",file_name)
+              store_eq_data("&#36;#{eq}&#36;",file_name)
             }
             output << line
           elsif line =~ /\$(.+?)\$/

@@ -27,7 +27,7 @@ lib/../mathjax-yard.wiki/potential2.md:
     \frac{ d_0 \left( r_1^{-n}m-  r_1^{-m} n \right) }{ -n + m }
     $$
 lib/../mathjax-yard.wiki/README_ja.md:
-  "$MATHJAX17$": "$$"
-  "$MATHJAX18$": "$$"
-  "$MATHJAX19$": "$$"
-  "$MATHJAX20$": "$MATHJAX20$"
+  "$MATHJAX17$": "&#36;&#36;"
+  "$MATHJAX18$": "&#36;&#36;"
+  "$MATHJAX19$": "&#36;&#36;"
+  "$MATHJAX20$": "&#36;MATHJAX20&#36;"
