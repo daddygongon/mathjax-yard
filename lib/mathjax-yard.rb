@@ -91,9 +91,8 @@ module MathJaxYard
 
     def revert(directory)
       files = Dir.glob(directory)
-      files.each{|file|
-        p b_file = file
-        file.scan(/(.+).back$/)
+      files.each{|b_file|
+        b_file.scan(/(.+).back$/)
         p t_file = $1
         FileUtils.mv(b_file,t_file)
       }

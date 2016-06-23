@@ -130,11 +130,19 @@ spec/*.md
 
 <p>としています．また，htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意しています．</p>
 
-<pre class="code csh"><code class="csh">bob% bundle exec exe/mathjax-yard --help
+<p>これをmathjax-yardで行うには，</p>
+
+<pre class="code csh"><code class="csh"> mathjax-yard --init
+</code></pre>
+
+<p>とする必要があります．</p>
+
+<pre class="code csh"><code class="csh">bob% mathjax-yard --help
 Usage: yardmath [options] [DIRECTORY]
     -v, --version                    show program Version.
     -r, --revert                     revert mjx file to orig file.
     -p, --post                       post operation.
+    -i, --init                       initiation for mathjax extension on yard layout.
 </code></pre>
 
 <h2>Development</h2>
@@ -153,7 +161,7 @@ Usage: yardmath [options] [DIRECTORY]
 </div></div>
 
     <div id="footer">
-  Generated on Thu Jun 23 14:03:52 2016 by
+  Generated on Thu Jun 23 15:36:00 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>
