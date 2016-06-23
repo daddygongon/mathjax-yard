@@ -77,7 +77,7 @@
 
 <p>標準的なLennard-Jonesポテンシャルの表式</p>
 
-<p>$MATHJAX15$$</p>
+<p>$$ F(s)=\int_{0}^{\infty}f(t)e^{-st}dt $$</p>
 
 <pre class="code ruby"><code class="ruby">bob% cat POTCAR
 ---
@@ -137,7 +137,11 @@ dedr:=normal(expand(d0*vm*vn / ((vn-vm)*rr) * (rh**vn - rh**vm)));
 eq1:=simplify(int(dedr,rr));
 </code></pre>
 
-<p>$MATHJAX16$</p>
+<p>$$
+r_1=r/r_0
+
+\frac{ d_0 \left( r_1^{-n}m-  r_1^{-m} n \right) }{ -n + m }
+$$</p>
 
 <h1>ポテンシャル選択機構</h1>
 
