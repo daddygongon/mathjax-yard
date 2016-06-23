@@ -39,14 +39,7 @@ module MathJaxYard
           exit
         }
         opt.on('-i', '--init','initiation for mathjax extension on yard layout.') {
-          target_dir=get_yard_layout_dir()
-          FileUtils.cd(target_dir){
-            tmp_dir='mathjax' # 'math2'
-            FileUtils.cp_r('default',tmp_dir)
-            modify_layout("#{tmp_dir}/layout/html/layout.erb")
-            modify_layout("#{tmp_dir}/onefile/html/layout.erb")
-            exit
-          }
+          init_yard
           exit
         }
       end
@@ -55,6 +48,16 @@ module MathJaxYard
       directory = @argv[0]==nil ? 'lib/../*/*.md' : @argv[0]
       convert(directory)
       exit
+    end
+
+    def init_yard()
+      target_dir=get_yard_layout_dir()
+      FileUtils.cd(target_dir){
+        tmp_dir='mathjax' # 'math2'
+        FileUtils.cp_r('default',tmp_dir)
+        modify_layout("#{tmp_dir}/layout/html/layout.erb")
+        modify_layout("#{tmp_dir}/onefile/html/layout.erb")
+      }
     end
 
     def get_yard_layout_dir()
@@ -85,15 +88,11 @@ module MathJaxYard
         File.basename(file).scan(/(.+)\.md/)
         p basename = $1
         target = "./doc/file.#{basename}.html"
-        file = File.open(target,'r')
-        src = file.read
-        file.close
+        src = File.read(target)
         tags.each_pair{|tag,eq|
           src.gsub!(tag,eq)
         }
-        file = File.open(target,'w')
-        file.print(src)
-        file.close
+        File.write(target,src)
       }
     end
 
@@ -117,33 +116,20 @@ module MathJaxYard
           @eq_data.delete(file) 
         else
           write_output_on_target(file,output)
-#          write_output_on_backup(file,output,'.mjx')
         end
       }
       save_yaml(@eq_data,"mathjax.yml")
     end
 
-    def write_output_on_backup(file,output,extention='.mjx')
-      file.scan(/(.+)\.md/)
-      p basename = $1
-      b_file = File.open(basename+extention+'.md','w')
-      b_file.print output
-      b_file.close
-    end
-
     def write_output_on_target(file,output)
       b_file = file+'.back'
       FileUtils.mv(file,b_file)
-      t_file = File.open(file,'w')
-      t_file.print output
-      t_file.close
+      File.write(file,output)
     end
 
     def save_yaml(data,file)
       print yaml_data=YAML.dump(data)
-      math_file = File.open(file,'w')
-      math_file.print(yaml_data)
-      math_file.close
+      File.write(file, yaml_data)
     end
 
     def mk_tags(lines,file_name)
@@ -160,19 +146,15 @@ module MathJaxYard
             p stored_eq << line
           end
         else #outside eq block
-          if line =~ /\\\$(.*?)\\\$/
-            line.gsub!(/\\\$(.*?)\\\$/){|equation|
-              eq = $1
-              store_eq_data("&#36;#{eq}&#36;",file_name)
-            }
-            output << line
-          elsif line =~ /\$(.+?)\$/
+          case line
+          when /\\\$(.*?)\\\$/
+            output << line # tryed to change $$ but failed.
+          when /\$(.+?)\$/
             line.gsub!(/\$(.+?)\$/){|equation|
               store_eq_data(equation,file_name)
             }
             output << line
-          elsif line =~/^\$\$/ # opening in eq block
-            p line
+          when /^\$\$/ # opening in eq block
             @in_eq_block = !@in_eq_block
             stored_eq << "$"
           else  #normal op (no eq)
