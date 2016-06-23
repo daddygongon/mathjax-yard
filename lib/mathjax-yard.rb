@@ -210,8 +210,8 @@ module MathJaxYard
 
     def check_escape_match(line,file)
       p line
-      p line.gsub!("\\\$","$")
-      text = store_eq_data("$#{line}$",file)
+      p line.gsub!("\\\$","\\\$")
+      text = store_eq_data("\$#{line}\$",file)
       return text
     end
   end
