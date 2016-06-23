@@ -136,8 +136,10 @@ module MathJaxYard
         else #outside eq block
           case line
           when /\\\$(.*?)\\\$/
+            p line
             output << line # tryed to change $$ but failed.
           when /\$(.+?)\$/
+            p line
             line.gsub!(/\$(.+?)\$/){|equation|
               store_eq_data(equation,file_name)
             }

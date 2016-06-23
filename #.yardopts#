@@ -1,0 +1,5 @@
+-t mathjax -p templates
+-
+*/*.md
+
+
