@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+                           tex2jax:{
+      inlineMath: [ ['$','$'], ["\(","\)"] ],
+      displayMath: [ ['$$','$$'], ["\[","\]"] ]
+                           }
+                         });
+    </script>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+    <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: Why_mathjax-yard
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.Why_mathjax-yard.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: Why_mathjax-yard</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>導入の経緯</h1>
+
+<h2>概要</h2>
+
+<p>mathjaxとmark downの周辺状況から，なぜmathjax-yardが必要になったかをまとめておきます．</p>
+
+<h2>状況</h2>
+
+<p>数値計算や物理シミュレーションにおいては，解説に数式が不可欠です．
+記法としては$LaTeX$形式がありますが，これをhtmlで表示するには工夫が必要です．
+gemなどを作るとき，yardでdocumentationを自動化することが可能です．
+しかし，そこに数式を組み込んでも，うまく表示されません．</p>
+
+<h3>MathML or mathjax</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">MathML</th>
+<th style="text-align: left">mathjax</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">firefoxのみ</td>
+<td style="text-align: left">なんでも</td>
+</tr>
+</tbody></table>
+
+<h2>mark down with mathjax extension</h2>
+
+<ul>
+<li>Githubのwikiはmark down 記法を取っているが，math拡張が切られた．</li>
+<li>Qiitaなどは独自拡張しているが，ない．</li>
+<li>yard
+
+<ul>
+<li>mathjaxの拡張ができる</li>
+<li>optionsに，組み込まれてはいない．</li>
+</ul></li>
+<li>atom
+
+<ul>
+<li>mathjax-wrapper とmarkdown_preview_plusでlive変換・表示できる．</li>
+<li>htmlへの変換はあるが，あまりきれいでない．</li>
+</ul></li>
+<li>pandoc
+
+<ul>
+<li>mathjaxを組み込んでhtmlに変換できる</li>
+<li>cssなどに汎用性がなく，体裁をいじるのは難しい．</li>
+</ul></li>
+</ul>
+
+<h2>つまり</h2>
+
+<p>個別にmathjaxの入ったmd文書をhtmlに変換することができたとしても，
+yardで自動生成される体裁の整った文書としては得ることが難しいというのが現状です．</p>
+
+<h2>解決法</h2>
+
+<p>そこで，yardのpre, postコマンドとして動作するmathjax-yardを開発しました．</p>
+
+<ul>
+<li>yardで変換される，<em>/</em>.md中の数式をMATHJAXタグに付け替え．</li>
+<li>yardでmd-&gt;html変換</li>
+<li>できたdoc/file.*.htmlのMATHJAXタグを数式に戻す
+という操作をしています．</li>
+</ul>
+
+<h2>やり残し</h2>
+
+<ul>
+<li>default動作以外のyard変換への対応
+
+<ul>
+<li>特に*.rbへの対応</li>
+</ul></li>
+<li>hikiへの対応</li>
+<li>yardへのpull request</li>
+<li>$を記述しようとしてもだめ．
+
+<ul>
+<li>\$で逃げている(16/6/23対応断念)．</li>
+</ul></li>
+<li>最小一致を使った記述の単純化(16/6/23対応)．</li>
+<li>Rakefileでのコマンド一発での変換
+
+<ul>
+<li>一つ所に書くと，systemコマンドなどがmultitaskで走ってしまう．</li>
+<li>taskを分割してそれぞれを終了させた(16/6/23対応)．</li>
+</ul></li>
+</ul>
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Jun 23 19:20:09 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.2).
+</div>
+
+  </body>
+</html>
