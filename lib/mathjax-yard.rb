@@ -153,15 +153,17 @@ module MathJaxYard
         if @in_eq_block #inside in eq block
           if line =~/^\$\$/ #closing
             stored_eq << "$"
-            output << store_eq_data(stored_eq,file_name)
+            output << store_eq_data("$#{stored_eq}$",file_name)
             stored_eq=""
             @in_eq_block = !@in_eq_block
           else #normal op. in eq block
             p stored_eq << line
           end
         else #outside eq block
-          next if line =~ /\\\$(.+)\\\$/ #escape \$
-          if line =~ /\$(.+)\$/ #normal op. in line eq.
+          if line =~ /\\\$(.+)\\\$/ #escape \$ to $
+            p converted =check_escape_match($1,file_name)
+            output <<  $`+converted+$'
+          elsif line =~ /\$(.+)\$/ #normal op. in line eq.
             p converted =check_multiple_match($1,file_name)
             output <<  $`+converted+$'
           elsif line =~/^\$\$/ # opening in eq block
@@ -179,21 +181,21 @@ module MathJaxYard
     def store_eq_data(equation,file_name)
       @eq_number+=1
       tag="$MATHJAX#{@eq_number}$"
-      @eq_data[file_name][tag] = "$#{equation}$"
+      @eq_data[file_name][tag] = equation
       return tag
     end
 
     def check_multiple_match(line,file)
       if !line.include?('$') or
           (line=~/^\$(.+)\$$/) then
-        return store_eq_data(line,file)
+        return store_eq_data("$#{line}$",file)
       end
       inline_eq = true
       equation,text="",""
       line.each_char{|char|
         if char == '$'
           if inline_eq then
-            text << store_eq_data(equation,file)
+            text << store_eq_data("$#{equation}$",file)
             equation = ""
           else
           end
@@ -202,7 +204,14 @@ module MathJaxYard
           inline_eq ? equation << char : text << char
         end
       }
-      text << store_eq_data(equation,file)
+      text << store_eq_data("$#{equation}$",file)
+      return text
+    end
+
+    def check_escape_match(line,file)
+      p line
+      p line.gsub!("\\\$","$")
+      text = store_eq_data("$#{line}$",file)
       return text
     end
   end

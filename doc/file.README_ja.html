@@ -16,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
-  File: README
+  File: README_ja
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -29,7 +29,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!file.README.html";
+  framesUrl = "frames.html#!file.README_ja.html";
 </script>
 
 
@@ -44,7 +44,7 @@
       <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: README</span>
+    <span class="title">File: README_ja</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -75,7 +75,7 @@
 
     <div id="content"><div id='filecontents'><h1>MathJaxYard</h1>
 
-<p>mathjax-yard is a mathjax extension for markdown in yard.</p>
+<p>mathjax-yardはyardによるmarkdown変換においてmathjaxを使えるようにする拡張機能です．</p>
 
 <h2>Installation</h2>
 
@@ -96,7 +96,7 @@
 
 <h2>Usage</h2>
 
-<p>mathjax-yard is intended to be a command line tool, using in Rakefile as follows.</p>
+<p>mathjax-yardはcommand line toolとしての使用を意図して作られています．例えば，Rakefileでの使用例は次の通りです．</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_desc'>desc</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>make documents by yard</span><span class='tstring_end'>&quot;</span></span>
 <span class='id identifier rubyid_task'>task</span> <span class='symbol'>:yard</span> <span class='kw'>do</span>
@@ -110,14 +110,32 @@
 <span class='kw'>end</span>
 </code></pre>
 
-<p>mathjax-yard search ./<em>/</em>.md and replace &#39;$...$&#39; or &#39;$$...$$&#39; to $MATHJAX*<em>$ tags, and make &#39;mathjax.yml&#39; for storing these relations.  After the normal YARD operation has done, &#39;mathjax-yard --post&#39; replacement will be done on &#39;doc/file.</em>.html&#39;.  The yard options are</p>
+<p>yardのデフォルトでの動作をなぞって，動作するように作られています．</p>
+
+<ul>
+<li>mathjax-yardは./<em>/</em>.mdを探索し，それらの中に&#39;\$\$&#39;あるいは&#39;\$\$..\$\$&#39;があるとMATHJAX20というタグに付け替え，</li>
+<li><em>.md.backとしたファイルに元ファイルのバックアップを取り，</em>.mdにタグ付け替えした内容を保存します．
+*また，同時に，  &#39;mathjax.yml&#39;にそれらのhash関係をyaml形式で保存します．</li>
+<li>通常のrake yardで変換したのち，</li>
+<li>&#39;mathjax-yard --post&#39;によって，&#39;doc/file.*.html&#39;に残されたtagを元に戻します．</li>
+<li>また同時に，backファイルを元に戻します．</li>
+</ul>
+
+<p>yardのoptionは，.yardoptsに</p>
 
 <pre class="code ruby"><code class="ruby">-t mathjax -p templates
 -
 spec/*.md
 </code></pre>
 
-<p>The mathjax layout should be included in yard layout.</p>
+<p>としています．また，htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意しています．</p>
+
+<pre class="code csh"><code class="csh">bob% bundle exec exe/mathjax-yard --help
+Usage: yardmath [options] [DIRECTORY]
+    -v, --version                    show program Version.
+    -r, --revert                     revert mjx file to orig file.
+    -p, --post                       post operation.
+</code></pre>
 
 <h2>Development</h2>
 

@@ -1,2 +1,3 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'mathjax/yard'
+require 'mathjax-yard'
+

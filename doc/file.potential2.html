@@ -4,14 +4,14 @@
   <head>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
-      tex2jax:{
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-      }
-      });
+                           tex2jax:{
+      inlineMath: [ ['$','$'], ["\(","\)"] ],
+      displayMath: [ ['$$','$$'], ["\[","\]"] ]
+                           }
+                         });
     </script>
     <script type="text/javascript"
-	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     </script>
     <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -137,9 +137,7 @@ dedr:=normal(expand(d0*vm*vn / ((vn-vm)*rr) * (rh**vn - rh**vm)));
 eq1:=simplify(int(dedr,rr));
 </code></pre>
 
-<p>$$
-r_1=r/r_0
-
+<p>$$r_1=r/r_0 \
 \frac{ d_0 \left( r_1^{-n}m-  r_1^{-m} n \right) }{ -n + m }
 $$</p>
 
@@ -187,7 +185,7 @@ $$</p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Jun 21 10:44:22 2016 by
+  Generated on Thu Jun 23 10:21:05 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>
