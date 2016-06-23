@@ -596,15 +596,45 @@
 213
 214
 215
-216</pre>
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 211</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_escape_match'>check_escape_match</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_line'>line</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\\$</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\\$</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\$</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>\$</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>then</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\$</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>\$</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_inline_eq'>inline_eq</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_equation'>equation</span><span class='comma'>,</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_each_char'>each_char</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_char'>char</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_char'>char</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_inline_eq'>inline_eq</span> <span class='kw'>then</span> <span class='comment'>#closing
+</span>        <span class='id identifier rubyid_text'>text</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\$</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_equation'>equation</span><span class='embexpr_end'>}</span><span class='tstring_content'>\$</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_equation'>equation</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>else</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_inline_eq'>inline_eq</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_inline_eq'>inline_eq</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_inline_eq'>inline_eq</span> <span class='op'>?</span> <span class='id identifier rubyid_equation'>equation</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_char'>char</span> <span class='op'>:</span> <span class='id identifier rubyid_text'>text</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_char'>char</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\$</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_equation'>equation</span><span class='embexpr_end'>}</span><span class='tstring_content'>\$</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_text'>text</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1259,7 +1289,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Jun 23 11:46:46 2016 by
+  Generated on Thu Jun 23 11:55:18 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>

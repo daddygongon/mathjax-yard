@@ -160,12 +160,16 @@ module MathJaxYard
             p stored_eq << line
           end
         else #outside eq block
-          if line =~ /\\\$(.+)\\\$/ #escape \$ to $
-            p converted =check_escape_match($1,file_name)
-            output <<  $`+converted+$'
-          elsif line =~ /\$(.+)\$/ #normal op. in line eq.
-            p converted =check_multiple_match($1,file_name)
-            output <<  $`+converted+$'
+          if line =~ /\\\$(.*?)\\\$/
+            line.gsub!(/\\\$(.*?)\\\$/){|equation|
+              store_eq_data(equation,file_name)
+            }
+            output << line
+          elsif line =~ /\$(.+?)\$/
+            line.gsub!(/\$(.+?)\$/){|equation|
+              store_eq_data(equation,file_name)
+            }
+            output << line
           elsif line =~/^\$\$/ # opening in eq block
             p line
             @in_eq_block = !@in_eq_block
@@ -183,51 +187,6 @@ module MathJaxYard
       tag="$MATHJAX#{@eq_number}$"
       @eq_data[file_name][tag] = equation
       return tag
-    end
-
-    def check_multiple_match(line,file)
-      if !line.include?('$') or
-          (line=~/^\$(.+)\$$/) then
-        return store_eq_data("$#{line}$",file)
-      end
-      inline_eq = true
-      equation,text="",""
-      line.each_char{|char|
-        if char == '$'
-          if inline_eq then
-            text << store_eq_data("$#{equation}$",file)
-            equation = ""
-          else
-          end
-          inline_eq = !inline_eq
-        else
-          inline_eq ? equation << char : text << char
-        end
-      }
-      text << store_eq_data("$#{equation}$",file)
-      return text
-    end
-
-    def check_escape_match(line,file)
-      if !line.include?('$') then
-        return store_eq_data("\$#{line}\$",file)
-      end
-      inline_eq = true
-      equation,text="",""
-      line.each_char{|char|
-        if char == '$'
-          if inline_eq then #closing
-            text << store_eq_data("\$#{equation}\$",file)
-            equation = ""
-          else
-          end
-          inline_eq = !inline_eq
-        else
-          inline_eq ? equation << char : text << char
-        end
-      }
-      text << store_eq_data("\$#{equation}\$",file)
-      return text
     end
   end
 end
