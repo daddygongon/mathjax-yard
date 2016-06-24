@@ -14,30 +14,6 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     </script>
     <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-                           tex2jax:{
-      inlineMath: [ ['$','$'], ["\(","\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"] ]
-                           }
-                         });
-    </script>
-    <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-    </script>
-    <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-                           tex2jax:{
-      inlineMath: [ ['$','$'], ["\(","\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"] ]
-                           }
-                         });
-    </script>
-    <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-    </script>
-    <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
   File: atom
@@ -104,13 +80,19 @@ EAM(Embedded atom method)は1980年代に盛んに使われるようになった
 
 <ol>
 <li>エネルギー表記
-EAMは原子$MATHJAX1$のエネルギーを
-$MATHJAX2$と表記する．右辺第1項は単なる2体間の相互作用を表わす．
+EAMは原子$i$のエネルギーを
+$$
+E_i = \sum _ j\phi \left( r_j \right) + f(\rho)
+$$
+と表記する．右辺第1項は単なる2体間の相互作用を表わす．
 右辺第2項が多体項と呼ばれるEAMに特徴的な項である．
-$MATHJAX3$はこの場合原子$MATHJAX4$との距離を意味しており，
-$MATHJAX5$は原子$MATHJAX6$の周りの原子との和によって求まる．
+$r_j$はこの場合原子$j$との距離を意味しており，
+$E_i$は原子$i$の周りの原子との和によって求まる．
 多体項は，一般的に
-$MATHJAX7$によって求められる．$MATHJAX8$は強結合(tight binding)の2次モーメント近似から，
+$$
+f(\rho) =\sqrt\rho=\sqrt {\sum_j h^2 \left( r_j \right) }
+$$
+によって求められる．$\rho$は強結合(tight binding)の2次モーメント近似から，
 電子密度を表わすとされている．
 これによって原子空孔を初め多くの金属物性を
 うまく表現することが可能となった．詳しくは西谷・赤本参照．</li>
@@ -119,12 +101,15 @@ EAM potentialにおいて単原子空孔の生成エネルギEvは</li>
 </ol></li>
 </ol>
 
-<p>$MATHJAX9$
-の関係がある．したがって，</p>
+<p>$$
+E_v = -\fracE_c2\frac2-poq1-poq
+$$</p>
+
+<p>の関係がある．したがって，</p>
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jun 24 11:14:17 2016 by
+  Generated on Fri Jun 24 11:33:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>

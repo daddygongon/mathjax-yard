@@ -825,6 +825,7 @@ with no extention: mathjax-yard -p lib/../*/*.md
       <pre class="lines">
 
 
+112
 113
 114
 115
@@ -857,11 +858,10 @@ with no extention: mathjax-yard -p lib/../*/*.md
 142
 143
 144
-145
-146</pre>
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mk_tags'>mk_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='ivar'>@in_eq_block</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1041,15 +1041,15 @@ with no extention: mathjax-yard -p lib/../*/*.md
       <pre class="lines">
 
 
+147
 148
 149
 150
 151
-152
-153</pre>
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_eq_data'>store_eq_data</span><span class='lparen'>(</span><span class='id identifier rubyid_equation'>equation</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='ivar'>@eq_number</span><span class='op'>+=</span><span class='int'>1</span>
@@ -1080,15 +1080,13 @@ with no extention: mathjax-yard -p lib/../*/*.md
 107
 108
 109
-110
-111</pre>
+110</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_output_on_target'>write_output_on_target</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_b_file'>b_file</span> <span class='op'>=</span> <span class='id identifier rubyid_mk_backup_file_name'>mk_backup_file_name</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
-  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mv'>mv</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_b_file'>b_file</span><span class='rparen'>)</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_b_file'>b_file</span><span class='comma'>,</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1101,7 +1099,7 @@ with no extention: mathjax-yard -p lib/../*/*.md
 </div>
 
     <div id="footer">
-  Generated on Fri Jun 24 11:31:49 2016 by
+  Generated on Fri Jun 24 11:33:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>
