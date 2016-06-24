@@ -116,7 +116,7 @@ EOF
     def write_output_on_target(file,output)
       b_file = mk_backup_file_name(file)
       FileUtils.mv(file,b_file)
-      File.write(file,output)
+      File.write(b_file,output)
     end
 
     def mk_tags(lines,file_name)
