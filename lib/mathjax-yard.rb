@@ -89,9 +89,10 @@ EOF
     end
 
     def convert(directory)
-      revert(directory)
+#      revert(directory)
       files = Dir.glob(File.join(directory,'*.md'))
-      files.each{|file|
+      files.each{|base_file|
+        file = mk_backup_file_name(base_file)
         @eq_data[file] = Hash.new
         lines = File.readlines(file)
         output = mk_tags(lines,file)
