@@ -1,5 +1,6 @@
 require "mathjax-yard/version"
 require "mathjax-yard/script"
+require "mathjax-yard/init"
 require 'optparse'
 require 'yaml'
 require 'fileutils'
@@ -26,52 +27,35 @@ module MathJaxYard
           exit
         }
         opt.on('-r', '--revert','revert mjx file to orig file.') {
-          directory = @argv[0]==nil ? 'lib/../*/*.md.back' : @argv[0]
+          directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
           revert(directory)
           exit
         }
-        opt.on('-p', '--post','post operation.') {
+        opt.on('-p', '--pre','pre operation.') {
+          directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
+          convert(directory)
+          exit
+        }
+        opt.on('--post','post operation.') {
           post_operation
-          directory = @argv[0]==nil ? 'lib/../*/*.md.back' : @argv[0]
+          directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
           revert(directory)
           exit
         }
-        opt.on('-i', '--init','initiation for mathjax extension on yard layout.') {
+        opt.on('-i', '--init','init for mathjax on yard layout.') {
           init_yard()
           exit
         }
       end
-      command_parser.banner = "Usage: yardmath [options] [DIRECTORY]"
+      command_parser.banner = <<EOF 
+Usage: mathjax-yard [options] [DIRECTORY]
+with no extention: mathjax-yard -p lib/../*/*.md
+
+EOF
       command_parser.parse!(@argv)
-      directory = @argv[0]==nil ? 'lib/../*/*.md' : @argv[0]
+      directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
       convert(directory)
       exit
-    end
-
-    def init_yard()
-      target_dir=get_yard_layout_dir()
-      FileUtils.cd(target_dir){
-        tmp_dir='mathjax' # 'math2'
-        FileUtils.cp_r('default',tmp_dir)
-        modify_layout("#{tmp_dir}/layout/html/layout.erb")
-        modify_layout("#{tmp_dir}/onefile/html/layout.erb")
-      }
-    end
-
-    def get_yard_layout_dir()
-      status, stdout, stderr  = systemu('gem env | grep INSTALLATION ')
-      p inst_dir= stdout.split("\n")[0].split(': ')[1]
-      status, stdout, stderr  = systemu('yard -v')
-      p yard_num= stdout.split(' ')[0]+'-'+stdout.split(' ')[1]
-      p target_dir = File.join(inst_dir,'gems',yard_num,"templates")
-      return target_dir
-    end
-
-    def modify_layout(file_name)
-      p file_name
-      src=Ffile.read(file_name)
-      src.gsub!(ORIGINAL,MATH_SCRIPT+ORIGINAL)
-      File.write(file_name,src)
     end
 
     def post_operation
@@ -89,23 +73,30 @@ module MathJaxYard
       }
     end
 
+
+#    BACKUP_FILE_EXT ='*.md.back'
+#    RE_BACKUP_FILE_EXT ='(.+).back$'
+    BACKUP_FILE_EXT ='*.mjx.md'
+    RE_BACKUP_FILE_EXT ='(.+).mjx.md$'
     def revert(directory)
-      files = Dir.glob(directory)
+      files = Dir.glob(File.join(directory,BACKUP_FILE_EXT))
       files.each{|b_file|
-        b_file.scan(/(.+).back$/)
-        p t_file = $1
+        b_file.scan(Regexp.new(RE_BACKUP_FILE_EXT))
+        p t_file = $1+'.md'
+#        p t_file = $1
         FileUtils.mv(b_file,t_file)
       }
     end
 
     def convert(directory)
-      files = Dir.glob(directory)
+      revert(directory)
+      files = Dir.glob(File.join(directory,'*.md'))
       files.each{|file|
         @eq_data[file] = Hash.new
         lines = File.readlines(file)
         output = mk_tags(lines,file)
         if @eq_data[file].size ==0
-          @eq_data.delete(file) 
+          @eq_data.delete(file)
         else
           write_output_on_target(file,output)
         end
@@ -113,8 +104,16 @@ module MathJaxYard
       File.write("mathjax.yml",YAML.dump(@eq_data))
     end
 
+    def mk_backup_file_name(file)
+      dir=File.dirname(file)
+      File.basename(file).scan(/(.*).md/)
+      basename=$1
+      return File.join(dir,"#{basename}.mjx.md")
+#      return file+'.back'
+    end
+
     def write_output_on_target(file,output)
-      b_file = file+'.back'
+      b_file = mk_backup_file_name(file)
       FileUtils.mv(file,b_file)
       File.write(file,output)
     end
