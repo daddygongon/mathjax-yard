@@ -67,7 +67,7 @@ EOF
         src = File.read(target)
         tags.each_pair{|tag,eq|
           p eq
-          src.gsub!(tag,eq)
+          src.gsub!(tag){eq}
         }
         File.write(target,src)
       }
