@@ -94,12 +94,12 @@ EOF
       files.each{|base_file|
         file = mk_backup_file_name(base_file)
         @eq_data[file] = Hash.new
-        lines = File.readlines(file)
+        lines = File.readlines(base_file)
         output = mk_tags(lines,file)
         if @eq_data[file].size ==0
           @eq_data.delete(file)
         else
-          write_output_on_target(file,output)
+          write_output_on_target(base_file,output)
         end
       }
       File.write("mathjax.yml",YAML.dump(@eq_data))
