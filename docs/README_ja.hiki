@@ -1,6 +1,11 @@
 ! MathJaxYard
 
 mathjax-yardはyardによるmarkdown変換においてmathjaxを使えるようにする拡張機能です．
+
+Github, rubygemsなどどのサイトでこの文書を見るかによって見え方が変わります．
+*[[yardの出力見本|http://nishitani0.kwansei.ac.jp/Open/mathjax-yard/]]
+が一番のおすすめです．
+
 *[[なぜ開発したか|file.Why_mathjax-yard.mjx.html]]
 *[[数式サンプル1|file.atom.mjx.html]]
 *[[数式サンプル2|file.potential.mjx.html]]
@@ -58,8 +63,9 @@ yardのoptionは，.yardoptsに
 spec/*.md
 >>>
 
-としています．また，htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意しています．
+としています．
 
+また，htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意しています．
 これをmathjax-yardで行うには，
 <<<csh
  mathjax-yard --init

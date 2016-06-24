@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{mathjax-yard provides mathjax extention to yard.}
   spec.description   = %q{mathjax-yard provides mathjax extention to yard.}
-  spec.homepage      = "https://github.com/daddygongon/mathjax-yard"
+  spec.homepage      = "http://nishitani0.kwansei.ac.jp/Open/mathjax-yard"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
