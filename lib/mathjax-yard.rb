@@ -66,31 +66,29 @@ EOF
         target = "./doc/file.#{basename}.html"
         src = File.read(target)
         tags.each_pair{|tag,eq|
-          p eq
-          src.gsub!(tag){eq}
+          src.gsub!(tag){eq}  # fail (tag,eq) at '/////n'
         }
         File.write(target,src)
       }
     end
 
-    BACKUP_FILE_EXT ='*.mjx.md'
-    RE_BACKUP_FILE_EXT ='(.+).mjx.md$'
+    MJX_FILE_EXT ='*.mjx.md'
     def revert(directory)
-      files = Dir.glob(File.join(directory,BACKUP_FILE_EXT))
-      files.each{|b_file|
-        FileUtils.rm(b_file)
+      files = Dir.glob(File.join(directory,MJX_FILE_EXT))
+      files.each{|m_file|
+        FileUtils.rm(m_file)
       }
     end
 
     def convert(directory)
       files = Dir.glob(File.join(directory,'*.md'))
       files.each{|base_file|
-        file = mk_backup_file_name(base_file)
-        @eq_data[file] = Hash.new
+        m_file = mk_mjx_file_name(base_file)
+        @eq_data[m_file] = Hash.new
         lines = File.readlines(base_file)
-        output = mk_tags(lines,file)
-        if @eq_data[file].size ==0
-          @eq_data.delete(file)
+        output = mk_tags(lines,m_file)
+        if @eq_data[m_file].size ==0
+          @eq_data.delete(m_file)
         else
           write_output_on_target(base_file,output)
         end
@@ -98,7 +96,7 @@ EOF
       File.write("mathjax.yml",YAML.dump(@eq_data))
     end
 
-    def mk_backup_file_name(file)
+    def mk_mjx_file_name(file)
       dir=File.dirname(file)
       File.basename(file).scan(/(.*).md/)
       basename=$1
@@ -106,8 +104,8 @@ EOF
     end
 
     def write_output_on_target(file,output)
-      b_file = mk_backup_file_name(file)
-      File.write(b_file,output)
+      m_file = mk_mjx_file_name(file)
+      File.write(m_file,output)
     end
 
     def mk_tags(lines,file_name)
