@@ -16,7 +16,6 @@ module MathJaxYard
       @argv = argv
       @eq_data=Hash.new
       @eq_number =0
-      @revert = false
     end
 
     def execute
@@ -39,6 +38,7 @@ module MathJaxYard
         opt.on('--post','post operation.') {
           post_operation
           directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
+          revert(directory)
           exit
         }
         opt.on('-i', '--init','init for mathjax on yard layout.') {
@@ -77,9 +77,7 @@ EOF
     def revert(directory)
       files = Dir.glob(File.join(directory,BACKUP_FILE_EXT))
       files.each{|b_file|
-        b_file.scan(Regexp.new(RE_BACKUP_FILE_EXT))
-        p t_file = $1+'.md'
-        FileUtils.mv(b_file,t_file)
+        FileUtils.rm(b_file)
       }
     end
 
