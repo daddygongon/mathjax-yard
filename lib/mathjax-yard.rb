@@ -39,7 +39,6 @@ module MathJaxYard
         opt.on('--post','post operation.') {
           post_operation
           directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
-          revert(directory)
           exit
         }
         opt.on('-i', '--init','init for mathjax on yard layout.') {
@@ -73,9 +72,6 @@ EOF
       }
     end
 
-
-#    BACKUP_FILE_EXT ='*.md.back'
-#    RE_BACKUP_FILE_EXT ='(.+).back$'
     BACKUP_FILE_EXT ='*.mjx.md'
     RE_BACKUP_FILE_EXT ='(.+).mjx.md$'
     def revert(directory)
@@ -83,13 +79,11 @@ EOF
       files.each{|b_file|
         b_file.scan(Regexp.new(RE_BACKUP_FILE_EXT))
         p t_file = $1+'.md'
-#        p t_file = $1
         FileUtils.mv(b_file,t_file)
       }
     end
 
     def convert(directory)
-#      revert(directory)
       files = Dir.glob(File.join(directory,'*.md'))
       files.each{|base_file|
         file = mk_backup_file_name(base_file)
@@ -110,7 +104,6 @@ EOF
       File.basename(file).scan(/(.*).md/)
       basename=$1
       return File.join(dir,"#{basename}.mjx.md")
-#      return file+'.back'
     end
 
     def write_output_on_target(file,output)

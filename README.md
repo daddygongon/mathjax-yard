@@ -1,9 +1,9 @@
 # MathJaxYard
 
 mathjax-yardはyardによるmarkdown変換においてmathjaxを使えるようにする拡張機能です．
-- [なぜ開発したか](file.Why_mathjax-yard.html)
-- [数式サンプル1](file.atom.html)
-- [数式サンプル2](file.potential.html)
+- [なぜ開発したか](file.Why_mathjax-yard.mjx.html)
+- [数式サンプル1](file.atom.mjx.html)
+- [数式サンプル2](file.potential.mjx.html)
 
 ## Installation
 
