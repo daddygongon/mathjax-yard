@@ -15,26 +15,12 @@ lib/../mathjax-yard.wiki/atom.mjx.md:
   "$MATHJAX9$": |-
     $$E_v = -\frac{E_c}{2}\frac{2-poq}{1-poq}
     $$
-lib/../mathjax-yard.wiki/atom.mjx.mjx.md:
-  "$MATHJAX10$": "$MATHJAX1$"
-  "$MATHJAX11$": "$MATHJAX2$"
-  "$MATHJAX12$": "$MATHJAX3$"
-  "$MATHJAX13$": "$MATHJAX4$"
-  "$MATHJAX14$": "$MATHJAX5$"
-  "$MATHJAX15$": "$MATHJAX6$"
-  "$MATHJAX16$": "$MATHJAX7$"
-  "$MATHJAX17$": "$MATHJAX8$"
-  "$MATHJAX18$": "$MATHJAX9$"
 lib/../mathjax-yard.wiki/potential.mjx.md:
-  "$MATHJAX19$": |-
+  "$MATHJAX10$": |-
     $$\begin{align*}
     dedr=-\frac{ n m d_0  \left(rh^{n}- rh^{m}\right) }{ \left(n-m \right) rr } \\
     E=\frac{ d_0 \left( r_0/rr^{n}m-  r_0/rr^{m} n \right) }{ -n + m }
     \end{align*}
     $$
-lib/../mathjax-yard.wiki/potential.mjx.mjx.md:
-  "$MATHJAX20$": "$MATHJAX19$"
 lib/../mathjax-yard.wiki/Why_mathjax-yard.mjx.md:
-  "$MATHJAX21$": "$LaTeX$"
-lib/../mathjax-yard.wiki/Why_mathjax-yard.mjx.mjx.md:
-  "$MATHJAX22$": "$MATHJAX21$"
+  "$MATHJAX11$": "$LaTeX$"
