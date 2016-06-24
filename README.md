@@ -3,8 +3,10 @@
 mathjax-yardはyardによるmarkdown変換においてmathjaxを使えるようにする拡張機能です．
 
 Github, rubygemsなどどのサイトでこの文書を見るかによって見え方が変わります．
+
 - [yardの出力見本](http://nishitani0.kwansei.ac.jp/Open/mathjax-yard/)
-が一番のおすすめです．
+
+が一番のおすすめです．そこから数式サンプルをたどってみてください．綺麗に数式が出力されるはず．
 
 - [なぜ開発したか](file.Why_mathjax-yard.mjx.html)
 - [数式サンプル1](file.atom.mjx.html)
