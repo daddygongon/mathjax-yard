@@ -4,6 +4,11 @@ module MathJaxYard
       target_dir=get_yard_layout_dir()
       FileUtils.cd(target_dir){
         tmp_dir='mathjax' # 'math2'
+        full_path="#{target_dir}/#{tmp_dir}/layout/html/layout.erb"
+        if File.exist?("#{tmp_dir}/layout/html/layout.erb")
+          print("file #{full_path} exists.\nDelete them first.\n")
+          exit
+        end
         FileUtils.cp_r('default',tmp_dir)
         modify_layout("#{tmp_dir}/layout/html/layout.erb")
         modify_layout("#{tmp_dir}/onefile/html/layout.erb")

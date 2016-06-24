@@ -124,11 +124,11 @@
 
 <ul>
 <li>mathjax-yardは./<em>/</em>.mdを探索し，それらの中に&#39;\$\$&#39;あるいは&#39;\$\$..\$\$&#39;があると\$MATHJAX20\$などというタグに付け替え，</li>
-<li><em>.md.backとしたファイルに元ファイルのバックアップを取り，</em>.mdにタグ付け替えした内容を保存します．</li>
+<li><em>.mj.mdとしたファイルに元ファイルのバックアップを取り，</em>.mdにタグ付け替えした内容を保存します．</li>
 <li>また，同時に，  &#39;mathjax.yml&#39;にそれらのhash関係をyaml形式で保存します．</li>
 <li>通常のrake yardで変換したのち，</li>
-<li>&#39;mathjax-yard --post&#39;によって，&#39;doc/file.*.html&#39;に残されたtagを元に戻します．</li>
-<li>また同時に，backファイルを元に戻します．</li>
+<li>&#39;mathjax-yard --post&#39;によって，&#39;doc/file.*.mjx.html&#39;に残されたtagを元に戻します．</li>
+<li>また同時に，mjx.mdファイルを消します．</li>
 </ul>
 
 <p>yardのoptionは，.yardoptsに</p>
@@ -171,7 +171,7 @@ Usage: yardmath [options] [DIRECTORY]
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jun 24 11:44:50 2016 by
+  Generated on Fri Jun 24 11:52:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>

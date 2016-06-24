@@ -44,11 +44,11 @@ end
 
 yardのデフォルトでの動作をなぞって，動作するように作られています．
 * mathjax-yardは./*/*.mdを探索し，それらの中に'\$\$'あるいは'\$\$..\$\$'があると\$MATHJAX20\$などというタグに付け替え，
-* *.md.backとしたファイルに元ファイルのバックアップを取り，*.mdにタグ付け替えした内容を保存します．
+* *.mj.mdとしたファイルに元ファイルのバックアップを取り，*.mdにタグ付け替えした内容を保存します．
 *また，同時に，  'mathjax.yml'にそれらのhash関係をyaml形式で保存します．
 * 通常のrake yardで変換したのち，
-* 'mathjax-yard --post'によって，'doc/file.*.html'に残されたtagを元に戻します．
-* また同時に，backファイルを元に戻します．
+* 'mathjax-yard --post'によって，'doc/file.*.mjx.html'に残されたtagを元に戻します．
+* また同時に，mjx.mdファイルを消します．
 
 yardのoptionは，.yardoptsに
 
