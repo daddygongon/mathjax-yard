@@ -16,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
-  File: atom
+  File: left_issue
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -29,7 +29,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!file.atom.html";
+  framesUrl = "frames.html#!file.left_issue.html";
 </script>
 
 
@@ -44,7 +44,7 @@
       <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: atom</span>
+    <span class="title">File: left_issue</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -73,39 +73,33 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><ol>
-<li>概要</li>
-<li><p>EAM
-EAM(Embedded atom method)は1980年代に盛んに使われるようになった経験的原子間ポテンシャルである．</p>
+    <div id="content"><div id='filecontents'><h1>やり残したことの検討結果</h1>
 
-<ol>
-<li>エネルギー表記
-EAMは原子$i$のエネルギーを
-$$
-E_i = \sum _ j\phi \left( r_j \right) + f(\rho)
-$$
-と表記する．右辺第1項は単なる2体間の相互作用を表わす．
-右辺第2項が多体項と呼ばれるEAMに特徴的な項である．
-$r_j$はこの場合原子$j$との距離を意味しており，
-$E_i$は原子$i$の周りの原子との和によって求まる．
-多体項は，一般的に
-$$
-f(\rho) =\sqrt\rho=\sqrt {\sum_j h^2 \left( r_j \right) }
-$$
-によって求められる．$\rho$は強結合(tight binding)の2次モーメント近似から，
-電子密度を表わすとされている．
-これによって原子空孔を初め多くの金属物性を
-うまく表現することが可能となった．詳しくは西谷・赤本参照．</li>
-<li>具体例
-EAM potentialにおいて単原子空孔の生成エネルギEvは</li>
-</ol></li>
-</ol>
+<h2>-t mathjaxでの選択</h2>
 
-<p>$$
-E_v = -\fracE_c2\frac2-poq1-poq
-$$</p>
+<p>yard生成時にいまはすべての書類にmathjaxをtemplateにしている．
+これでは，本来のhtml記法での\$\$が別の意味となる．
+特に，methodなどのcode解説において斜体表示となり，残念．</p>
 
-<p>の関係がある．したがって，</p>
+<h3>yardでの対応</h3>
+
+<ul>
+<li>*.mjx.mdを別にyardがけする</li>
+<li>.yardoptsの記述を変える．</li>
+<li>Rakeのなかでtask.files, task.optionsで対応させようとしたが，うまく動作しない．</li>
+</ul>
+
+<p>実装してみたが，成功してない．</p>
+
+<h3>mathjaxでの対応</h3>
+
+<p>実際はRakefileでの対応となるが，</p>
+
+<ul>
+<li>mathjaxでひっかかったのを別フォルダーにして，yardを変える．</li>
+</ul>
+
+<p>まだ，トライしてない．いずれにしろ，task.optionsの挙動制御は必要</p>
 </div></div>
 
     <div id="footer">

@@ -10,7 +10,20 @@ task :default => :spec
 
 desc "make documents by yard"
 task :yard do
-  YARD::Rake::YardocTask.new
+  YARD::Rake::YardocTask.new{|t|
+    t.files = ['*.wiki/**/*']
+    t.options = ['--any', '--extra', '--opts']
+  }
+end
+
+desc "make documents by mathjax_yard"
+task :mjx do
+  print "hello\n"
+  YARD::Rake::YardocTask.new{|t|
+    t.files = ['mjx/*.md']
+    t.options = ['--any', '--extra', '--opts']
+    t.options << '-t mathjax'
+  }
 end
 
 desc "make md documents from hiki"

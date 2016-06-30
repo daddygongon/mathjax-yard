@@ -2,21 +2,9 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-                           tex2jax:{
-      inlineMath: [ ['$','$'], ["\(","\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"] ]
-                           }
-                         });
-    </script>
-    <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-    </script>
-    <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
-  File: README_ja
+  File: README
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -29,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!file.README_ja.html";
+  framesUrl = "frames.html#!file.README.html";
 </script>
 
 
@@ -44,7 +32,7 @@
       <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: README_ja</span>
+    <span class="title">File: README</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -163,12 +151,11 @@ mathjax-yardでは，</p>
 
 <ul>
 <li>mathjax-yardは./<em>/</em>.mdを探索し，それらの中に&#39;\$\$&#39;あるいは&#39;\$\$..\$\$&#39;があると\$MATHJAX20\$などというタグに付け替え，</li>
-<li>*.mjx.mdとしたファイルに元ファイルのバックアップを取り，タグ付け替えした内容を保存します．</li>
-<li>また，同時に，&#39;mathjax.yml&#39;にそれらのhash関係をyaml形式で保存します．</li>
+<li><em>.mj.mdとしたファイルに元ファイルのバックアップを取り，</em>.mdにタグ付け替えした内容を保存します．</li>
+<li>また，同時に，  &#39;mathjax.yml&#39;にそれらのhash関係をyaml形式で保存します．</li>
 <li>通常のrake yardで変換したのち，</li>
 <li>&#39;mathjax-yard --post&#39;によって，&#39;doc/file.*.mjx.html&#39;に残されたtagを元に戻します．</li>
 <li>また同時に，mjx.mdファイルを消します．</li>
-<li>doc中には，files.<em>.mjx.htmlとfiles.</em>.htmlという2種類のほぼ同じ内容のhtmlが生成されます．</li>
 </ul>
 
 <pre class="code csh"><code class="csh">bob% mathjax-yard --help
@@ -201,7 +188,7 @@ Usage: yardmath [options] [DIRECTORY]
 </div></div>
 
     <div id="footer">
-  Generated on Thu Jun 30 13:43:18 2016 by
+  Generated on Mon Jun 27 00:59:32 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>
