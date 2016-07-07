@@ -8,9 +8,14 @@ Github, rubygemsなど，この文書をどのサイトで見るかによって�
 
 が，mathjax-yardで意図している完成形です．そこから数式サンプルをたどってみてください．綺麗に数式が表示されるはず．
 
-- [なぜ開発したか](file.Why_mathjax-yard.mjx.html)
-- [数式サンプル1](file.atom.mjx.html)
-- [数式サンプル2](file.potential.mjx.html)
+
+|項目| from gems | for github|
+|:----|:----|:----|
+|なぜ開発したか|[gems](file.Why_mathjax-yard.mjx.html)|[wiki](Why_mathjax-yard)|
+|数式サンプル1|[gems](file.atom.mjx.html)|[gems](atom)|
+|数式サンプル2|[gems](file.potential.mjx.html)|[gems](potential)|
+
+
 
 ## Installation
 

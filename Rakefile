@@ -14,20 +14,20 @@ task :yard do
 end
 
 task :hiki2md do
-  files = Dir.entries('docs')
+  files = Dir.entries('hikis')
   files.each{|file|
     name=file.split('.')
     if name[1]=='hiki' then
-      p command="hiki2md docs/#{name[0]}.hiki > #{basename}.wiki/#{name[0]}.md"
+      p command="hiki2md hikis/#{name[0]}.hiki > #{basename}.wiki/#{name[0]}.md"
       system command
     end
   }
   system "cp #{basename}.wiki/README_ja.md README.md"
   system "cp #{basename}.wiki/README_ja.md #{basename}.wiki/Home.md"
-  system "cp docs/*.gif #{basename}.wiki"
-  system "cp docs/*.gif doc"
-  system "cp docs/*.png #{basename}.wiki"
-  system "cp docs/*.png doc"
+  system "cp hikis/*.gif #{basename}.wiki"
+  system "cp hikis/*.gif doc"
+  system "cp hikis/*.png #{basename}.wiki"
+  system "cp hikis/*.png doc"
 end
 
 desc "arrange yard target by mathjax-yard"
