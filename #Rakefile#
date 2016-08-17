@@ -1,8 +1,6 @@
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 require 'yard'
-require 'fileutils'
-
 p base_path = File.expand_path('..', __FILE__)
 p basename = File.basename(base_path)
 
@@ -17,7 +15,6 @@ end
 
 task :hiki2md do
   files = Dir.entries('hikis')
-  FileUtils.mkdir_p("#{basename}.wiki")
   files.each{|file|
     name=file.split('.')
     if name[1]=='hiki' then
