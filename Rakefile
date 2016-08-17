@@ -25,12 +25,16 @@ task :hiki2md do
       system command
     end
   }
-  system "cp #{basename}.wiki/README_ja.md README.md"
-  system "cp #{basename}.wiki/README_ja.md #{basename}.wiki/Home.md"
-  system "cp hikis/*.gif #{basename}.wiki"
-  system "cp hikis/*.gif doc"
-  system "cp hikis/*.png #{basename}.wiki"
-  system "cp hikis/*.png doc"
+  begin
+    FileUtils.cp("#{basename}.wiki/README_ja.md", "README.md")
+    FileUtils.cp("#{basename}.wiki/README_ja.md","#{basename}.wiki/Home.md")
+    FileUtils.cp("hikis/*.gif","#{basename}.wiki")
+    FileUtils.cp("hikis/*.gif","doc")
+    FileUtils.cp("hikis/*.png","#{basename}.wiki")
+    FileUtils.cp("hikis/*.png","doc")
+  rescue => ex
+    puts "#{ex.class}"
+  end
 end
 
 desc "arrange yard target by mathjax-yard"
