@@ -2,15 +2,20 @@
 
 mathjax-yardはyardによるmarkdown変換においてmathjaxを使えるようにする拡張機能です．
 
-Github, rubygemsなどどのサイトでこの文書を見るかによって見え方が変わります．
+Github, rubygemsなど，この文書をどのサイトで見るかによって見え方が変わります．
 
 - [yardの出力見本](http://nishitani0.kwansei.ac.jp/Open/mathjax-yard/)
 
-が一番のおすすめです．そこから数式サンプルをたどってみてください．綺麗に数式が出力されるはず．
+が，mathjax-yardで意図している完成形です．そこから数式サンプルをたどってみてください．綺麗に数式が表示されるはず．
 
-- [なぜ開発したか](file.Why_mathjax-yard.mjx.html)
-- [数式サンプル1](file.atom.mjx.html)
-- [数式サンプル2](file.potential.mjx.html)
+
+|項目| from gems | for github|
+|:----|:----|:----|
+|なぜ開発したか|[gems](file.Why_mathjax-yard.mjx.html)|[wiki](Why_mathjax-yard)|
+|数式サンプル1|[gems](file.atom.mjx.html)|[gems](atom)|
+|数式サンプル2|[gems](file.potential.mjx.html)|[gems](potential)|
+
+
 
 ## Installation
 
@@ -19,7 +24,13 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'mathjax-yard'
 ```
-
+or
+```ruby
+Gem::Specification.new do |spec|
+...
+  spec.add_development_dependency "mathjax-yard", "~> 1.0.2"
+end
+```
 And then execute:
 
 ```
@@ -33,8 +44,52 @@ $ gem install mathjax-yard
 ```
 
 ## Usage
+mathjax-yardは，bundle gemで作られるgemの開発directoryでの文書作成を前提に作られています．
 
-mathjax-yardはcommand line toolとしての使用を意図して作られています．例えば，Rakefileでの使用例は次の通りです．
+### 準備
+yardのoptionは，.yardoptsに
+
+```
+-t mathjax -p templates
+-
+spec/*.md
+```
+
+としています．
+
+htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意する必要があります．
+mathjax-yardでは，
+```csh
+ mathjax-yard --init
+```
+で自動生成します．
+
+その他に，Rakefile, .yardoptsに記述の追加が必要ですが，今は手動で行うように指示しています．
+
+## Usage
+```csh
+Usage: mathjax-yard [options] [DIRECTORY]
+with no extention: mathjax-yard -p lib/../*/*.md
+
+    -v, --version                    show program Version.
+    -r, --revert                     revert mjx file to orig file.
+    -p, --pre                        pre operation.
+        --post                       post operation.
+    -i, --init                       init for mathjax on yard layout.
+```
+
+yardのデフォルトでの動作をなぞって，動作するように作られています．
+- mathjax-yardは./*/*.mdを探索し，それらの中に'\$\$'あるいは'\$\$..\$\$'があると\$MATHJAX20\$などというタグに付け替え，
+- *.mjx.mdとしたファイルに元ファイルのバックアップを取り，タグ付け替えした内容を保存します．
+- また，同時に，'mathjax.yml'にそれらのhash関係をyaml形式で保存します．
+- 通常のrake yardで変換したのち，
+- 'mathjax-yard --post'によって，'doc/file.*.mjx.html'に残されたtagを元に戻します．
+- また同時に，mjx.mdファイルを消します．
+- doc中には，files.*.mjx.htmlとfiles.*.htmlという2種類のほぼ同じ内容のhtmlが生成されます．
+
+### Rakefileでの使用例
+
+Rakefileでの使用例は次の通りです．
 
 ```ruby
 desc "make documents by yard"
@@ -53,45 +108,15 @@ task :myard => [:pre_math,:yard] do
 end
 ```
 
-yardのデフォルトでの動作をなぞって，動作するように作られています．
-- mathjax-yardは./*/*.mdを探索し，それらの中に'\$\$'あるいは'\$\$..\$\$'があると\$MATHJAX20\$などというタグに付け替え，
-- *.mj.mdとしたファイルに元ファイルのバックアップを取り，*.mdにタグ付け替えした内容を保存します．
-- また，同時に，  'mathjax.yml'にそれらのhash関係をyaml形式で保存します．
-- 通常のrake yardで変換したのち，
-- 'mathjax-yard --post'によって，'doc/file.*.mjx.html'に残されたtagを元に戻します．
-- また同時に，mjx.mdファイルを消します．
-
-yardのoptionは，.yardoptsに
-
-```
--t mathjax -p templates
--
-spec/*.md
-```
-
-としています．
-
-また，htmlのhead部分にmathjaxのscriptを埋め込んだlayoutを用意しています．
-これをmathjax-yardで行うには，
-```csh
- mathjax-yard --init
-```
-とする必要があります．
-
-```csh
-bob% mathjax-yard --help
-Usage: yardmath [options] [DIRECTORY]
-    -v, --version                    show program Version.
-    -r, --revert                     revert mjx file to orig file.
-    -p, --post                       post operation.
-    -i, --init                       initiation for mathjax extension on yard layout.
-```
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec mathjax-yard` to use the gem in this directory, ignoring other installed copies of this gem.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## left issues
+- [残された課題](file.Why_mathjax-yard.html)のやり残しに既述．
 
 ## Contributing
 

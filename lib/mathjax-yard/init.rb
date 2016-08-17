@@ -7,7 +7,7 @@ module MathJaxYard
         full_path="#{target_dir}/#{tmp_dir}/layout/html/layout.erb"
         if File.exist?("#{tmp_dir}/layout/html/layout.erb")
           print("file #{full_path} exists.\nDelete them first.\n")
-          exit
+          return
         end
         FileUtils.cp_r('default',tmp_dir)
         modify_layout("#{tmp_dir}/layout/html/layout.erb")

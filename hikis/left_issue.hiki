@@ -1,0 +1,19 @@
+!やり残したことの検討結果
+!! -t mathjaxでの選択
+yard生成時にいまはすべての書類にmathjaxをtemplateにしている．
+これでは，本来のhtml記法での\$\$が別の意味となる．
+特に，methodなどのcode解説において斜体表示となり，残念．
+
+!!! yardでの対応
+* *.mjx.mdを別にyardがけする
+* .yardoptsの記述を変える．
+* Rakeのなかでtask.files, task.optionsで対応させようとしたが，うまく動作しない．
+
+実装してみたが，成功してない．
+
+!!! mathjaxでの対応
+実際はRakefileでの対応となるが，
+
+* mathjaxでひっかかったのを別フォルダーにして，yardを変える．
+
+まだ，トライしてない．いずれにしろ，task.optionsの挙動制御は必要

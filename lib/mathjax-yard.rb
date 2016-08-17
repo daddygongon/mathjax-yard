@@ -43,6 +43,7 @@ module MathJaxYard
         }
         opt.on('-i', '--init','init for mathjax on yard layout.') {
           init_yard()
+          init_mathjax_yard()
           exit
         }
       end
@@ -55,6 +56,31 @@ EOF
       directory = @argv[0]==nil ? 'lib/../*' : @argv[0]
       convert(directory)
       exit
+    end
+
+    def init_mathjax_yard
+      text = <<EOS
+
+Following hand operations are necessary.
+
+Add on ./yardopts
+
+-t mathjax -p templates
+
+Add on Rakefile
+
+desc "arrange yard target by mathjax-yard"
+task :pre_math do
+  system('mathjax-yard')
+end
+
+desc "make yard documents with yardmath"
+task :myard => [:hiki2md, :pre_math,:yard] do
+  system('mathjax-yard --post')
+end
+
+EOS
+      puts text
     end
 
     def post_operation

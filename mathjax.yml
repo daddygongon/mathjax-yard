@@ -12,15 +12,16 @@ lib/../mathjax-yard.wiki/atom.mjx.md:
     $$f(\rho) =\sqrt{\rho}=\sqrt {\sum_j h^2 \left( r_j \right) }
     $$
   "$MATHJAX8$": "$\\rho$"
-  "$MATHJAX9$": |-
+  "$MATHJAX9$": "$E_v$"
+  "$MATHJAX10$": |-
     $$E_v = -\frac{E_c}{2}\frac{2-poq}{1-poq}
     $$
 lib/../mathjax-yard.wiki/potential.mjx.md:
-  "$MATHJAX10$": |-
+  "$MATHJAX11$": |-
     $$\begin{align*}
     dedr=-\frac{ n m d_0  \left(rh^{n}- rh^{m}\right) }{ \left(n-m \right) rr } \\
     E=\frac{ d_0 \left( r_0/rr^{n}m-  r_0/rr^{m} n \right) }{ -n + m }
     \end{align*}
     $$
 lib/../mathjax-yard.wiki/Why_mathjax-yard.mjx.md:
-  "$MATHJAX11$": "$LaTeX$"
+  "$MATHJAX12$": "$LaTeX$"
