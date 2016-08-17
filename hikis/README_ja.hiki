@@ -57,6 +57,29 @@ mathjax-yardでは，
 >>>
 で自動生成します．
 
+その他に，Rakefile, .yardoptsに記述の追加が必要ですが，今は手動で行うように指示しています．
+
+!!Usage
+<<<csh
+Usage: mathjax-yard [options] [DIRECTORY]
+with no extention: mathjax-yard -p lib/../*/*.md
+
+    -v, --version                    show program Version.
+    -r, --revert                     revert mjx file to orig file.
+    -p, --pre                        pre operation.
+        --post                       post operation.
+    -i, --init                       init for mathjax on yard layout.
+>>>
+
+yardのデフォルトでの動作をなぞって，動作するように作られています．
+* mathjax-yardは./*/*.mdを探索し，それらの中に'\$\$'あるいは'\$\$..\$\$'があると\$MATHJAX20\$などというタグに付け替え，
+* *.mjx.mdとしたファイルに元ファイルのバックアップを取り，タグ付け替えした内容を保存します．
+*また，同時に，'mathjax.yml'にそれらのhash関係をyaml形式で保存します．
+* 通常のrake yardで変換したのち，
+* 'mathjax-yard --post'によって，'doc/file.*.mjx.html'に残されたtagを元に戻します．
+* また同時に，mjx.mdファイルを消します．
+* doc中には，files.*.mjx.htmlとfiles.*.htmlという2種類のほぼ同じ内容のhtmlが生成されます．
+
 !!!Rakefileでの使用例
 
 Rakefileでの使用例は次の通りです．
@@ -78,23 +101,6 @@ task :myard => [:pre_math,:yard] do
 end
 >>>
 
-yardのデフォルトでの動作をなぞって，動作するように作られています．
-* mathjax-yardは./*/*.mdを探索し，それらの中に'\$\$'あるいは'\$\$..\$\$'があると\$MATHJAX20\$などというタグに付け替え，
-* *.mjx.mdとしたファイルに元ファイルのバックアップを取り，タグ付け替えした内容を保存します．
-*また，同時に，'mathjax.yml'にそれらのhash関係をyaml形式で保存します．
-* 通常のrake yardで変換したのち，
-* 'mathjax-yard --post'によって，'doc/file.*.mjx.html'に残されたtagを元に戻します．
-* また同時に，mjx.mdファイルを消します．
-* doc中には，files.*.mjx.htmlとfiles.*.htmlという2種類のほぼ同じ内容のhtmlが生成されます．
-
-<<<csh
-bob% mathjax-yard --help
-Usage: yardmath [options] [DIRECTORY]
-    -v, --version                    show program Version.
-    -r, --revert                     revert mjx file to orig file.
-    -p, --post                       post operation.
-    -i, --init                       initiation for mathjax extension on yard layout.
->>>
 
 !! Development
 
