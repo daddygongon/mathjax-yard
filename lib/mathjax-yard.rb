@@ -63,11 +63,11 @@ EOF
 
 Following hand operations are necessary.
 
-Add ./yardopts
+Add on ./yardopts
 
 -t mathjax -p templates
 
-Add Rakefile
+Add on Rakefile
 
 desc "arrange yard target by mathjax-yard"
 task :pre_math do
