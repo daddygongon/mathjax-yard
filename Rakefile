@@ -12,7 +12,18 @@ task :default => :spec
 
 desc "make documents by yard"
 task :yard do
-  YARD::Rake::YardocTask.new
+#  YARD::Rake::YardocTask.new
+  YARD::Rake::YardocTask.new{|t|
+#    t.files=['lib/**/*.rb','**/*.md']
+#    t.options=['-t','mathjax']
+  }
+
+  YARD::Rake::YardocTask.new {|t|
+#    t.files=['**/*.md']
+#    t.options=['-t','mathjax']
+    t.options=['--exclude','lib/**/*.rb','--files','**/*.md','-t','mathjax']
+  }
+
 end
 
 task :hiki2md do

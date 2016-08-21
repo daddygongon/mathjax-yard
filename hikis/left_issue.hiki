@@ -9,7 +9,29 @@ yard生成時にいまはすべての書類にmathjaxをtemplateにしている�
 * .yardoptsの記述を変える．
 * Rakeのなかでtask.files, task.optionsで対応させようとしたが，うまく動作しない．
 
-実装してみたが，成功してない．
+実装してみた．'.yardopts'を外したうえで，
+<<< ruby
+desc "make documents by yard"
+task :yard do
+#  YARD::Rake::YardocTask.new
+  YARD::Rake::YardocTask.new{|t|
+#    t.files=['lib/**/*.rb','**/*.md']
+#    t.options=['-t','mathjax']
+  }
+
+  YARD::Rake::YardocTask.new {|t|
+#    t.files=['**/*.md']
+#    t.options=['-t','mathjax']
+    t.options=['--exclude','lib/**/*.rb','--files','**/*.md','-t','mathjax']
+  }
+
+end
+>>>
+を実行．うまく行った．しかし，*.mdだけをcompileするのに失敗．いろいろ試みたがだめ．本人に直接質問出すか．．．pull requestは素早く反応してくれたから．
+
+*[[Isegal|https://github.com/lsegal/yard/blob/master/docs/Templates.md]]に記述あり．
+さらに
+*yardoc.orgのDoumentationあるいは[[そこからのリンク|http://gnuu.org/2009/11/18/customizing-yard-templates/]]にcustomizing-yard-templatesがある．
 
 !!! mathjaxでの対応
 実際はRakefileでの対応となるが，
