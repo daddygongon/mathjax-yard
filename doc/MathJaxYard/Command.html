@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-                           tex2jax:{
-      inlineMath: [ ['$','$'], ["\(","\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"] ]
-                           }
-                         });
-    </script>
-    <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-    </script>
-    <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Class: MathJaxYard::Command
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.16
   
 </title>
 
@@ -40,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../class_list.html"></iframe>
+      <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -70,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../class_list.html"></iframe>
 
       <div id="content"><h1>Class: MathJaxYard::Command
   
@@ -116,15 +102,21 @@
 </div>
 
 
-  <h2>Constant Summary</h2>
-  <dl class="constants">
-    
-      <dt id="MJX_FILE_EXT-constant" class="">MJX_FILE_EXT =
-        
-      </dt>
-      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*.mjx.md</span><span class='tstring_end'>&#39;</span></span></pre></dd>
-    
-  </dl>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="MJX_FILE_EXT-constant" class="">MJX_FILE_EXT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*.mjx.md</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -1031,7 +1023,7 @@ end
 <span class='kw'>def</span> <span class='id identifier rubyid_modify_layout'>modify_layout</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span> <span class='id identifier rubyid_file_name'>file_name</span>
   <span class='id identifier rubyid_src'>src</span><span class='op'>=</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='const'>ORIGINAL</span><span class='comma'>,</span><span class='const'>MATH_SCRIPT</span><span class='op'>+</span><span class='const'>ORIGINAL</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../top-level-namespace.html#ORIGINAL-constant" title="ORIGINAL (constant)">ORIGINAL</a></span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="../top-level-namespace.html#MATH_SCRIPT-constant" title="MATH_SCRIPT (constant)">MATH_SCRIPT</a></span></span><span class='op'>+</span><span class='const'><span class='object_link'><a href="../top-level-namespace.html#ORIGINAL-constant" title="ORIGINAL (constant)">ORIGINAL</a></span></span><span class='rparen'>)</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span><span class='id identifier rubyid_src'>src</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1117,7 +1109,7 @@ end
       <pre class="code"><span class="info file"># File 'lib/mathjax-yard.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_revert'>revert</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='comma'>,</span><span class='const'>MJX_FILE_EXT</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#MJX_FILE_EXT-constant" title="MathJaxYard::Command::MJX_FILE_EXT (constant)">MJX_FILE_EXT</a></span></span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_files'>files</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_m_file'>m_file</span><span class='op'>|</span>
     <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm'>rm</span><span class='lparen'>(</span><span class='id identifier rubyid_m_file'>m_file</span><span class='rparen'>)</span>
   <span class='rbrace'>}</span>
@@ -1200,9 +1192,9 @@ end
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 21 13:15:04 2016 by
+  Generated on Mon Apr  8 09:38:54 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.2.2).
+  0.9.16 (ruby-2.4.3).
 </div>
 
     </div>
